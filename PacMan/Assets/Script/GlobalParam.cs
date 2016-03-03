@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GlobalParam : MonoBehaviour {
 
-	private bool m_isDemoMode = false;
+	private bool m_isDemoMode = true;
 	private static GlobalParam m_gpInstance = null;
 	public static GlobalParam getGPInstance(){
 		if(m_gpInstance == null){

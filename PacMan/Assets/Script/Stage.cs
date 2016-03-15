@@ -17,8 +17,9 @@ public class Stage : MonoBehaviour
 	private const float WALL_Y = .0F;
 	private const float GEM_Y = .5f;
 	public float GEM_SIZE = 1.0f;
+	public int GEM_SCORE = 10;
 
-	enum SPAWN_POINT_TYPE{
+	public enum SPAWN_POINT_TYPE{
 		PLAYER = 0,
 		ENEMY_1,
 		ENEMY_2,
@@ -56,6 +57,9 @@ public class Stage : MonoBehaviour
 	private int m_gemTotalNum;
 	private int m_gemCurrentNum;
 	private ParticleEmitter m_gemEmitter;
+
+	public AudioChannels m_audio;
+	public AudioClip m_gemPickupSe;
 
 	public void onStageStart(){
 		destroyStage ();
@@ -251,6 +255,57 @@ public class Stage : MonoBehaviour
 
 	public int getGemRemain(){
 		return m_gemCurrentNum;
+	}
+
+	public Vector3 GetSpawnPoint(SPAWN_POINT_TYPE type)
+	{
+		int t = (int)type;
+		if (t >= m_spawnPositions.Length ) {
+			Debug.LogWarning("Spawn Point is not found");
+			return new Vector3((float)STAGE_ORIGIN_X,0,(float)STAGE_ORIGIN_Z);
+		}
+
+		return m_spawnPositions[t];
+	}
+
+	public Vector3 GetSpawnPoint(int type) 
+	{
+		return m_spawnPositions[type];
+	}
+
+	public void PickUpItem(Vector3 p)
+	{
+		int gx,gz;
+		bool ret = PositionToIndex(p,out gx,out gz);
+
+		if (ret) {
+			int idx = m_stageData.gameParticleIndex[gz,gx];
+			if (idx >= 0) {
+				Particle[] gemParticle = m_gemEmitter.particles;
+				gemParticle[idx].size = 0;
+				m_gemEmitter.particles = gemParticle;
+				m_stageData.gameParticleIndex[gz,gx] = -1;
+				m_audio.playOneShot(m_gemPickupSe,1.0f,0);
+				Score.AddScore(GEM_SCORE);
+				m_gemCurrentNum--;
+				if (m_gemCurrentNum <= 0)
+					m_gameControl.OnEatAll();
+			}
+		}
+	}
+
+	public bool PositionToIndex(Vector3 pos,out int x,out int z)
+	{
+		x = Mathf.RoundToInt(pos.x);
+		z = Mathf.RoundToInt(pos.z);
+
+		// マップの位置になおす.
+		x -= m_stageData.offset_x;
+		z -= m_stageData.offset_z;
+		// 範囲チェック.
+		if (x < 0 || z < 0 || x >= m_stageData.width || z >= m_stageData.length)
+			return false;
+		return true;
 	}
 }
 

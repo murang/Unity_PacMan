@@ -60,6 +60,23 @@ public class GameControl : MonoBehaviour {
 	public int getStageNo(){
 		return m_stageNo;
 	}
+
+	public void AddObjectToList(GameObject o)
+	{
+		m_objList.Add(o);
+	}
+
+	public void OnEatAll()
+	{
+		GameObject.Find("Player").SendMessage("OnStageClear");
+		GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+		for (int i = 0; i < enemys.Length; i++)
+			enemys[i].SendMessage("OnStageClear");
+		GameObject.Find("Player").SendMessage("OnStageClear");
+		m_hud.drawStageClear(true);
+		StartCoroutine("StageClear");
+
+	}
 }
 
 

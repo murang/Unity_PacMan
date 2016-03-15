@@ -3,9 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
     <ProjectGuid>{AA78EF97-C8BA-DE3F-5C5F-B8B61251CC4E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -34,38 +33,43 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\AudioChannels.cs" />
-     <Compile Include="Assets\Script\CombineChildren_Custom.cs" />
-     <Compile Include="Assets\Script\FollowCamera.cs" />
-     <Compile Include="Assets\Script\GameControl.cs" />
-     <Compile Include="Assets\Script\GlobalParam.cs" />
-     <Compile Include="Assets\Script\Hud.cs" />
-     <Compile Include="Assets\Script\MeshCombineUtility.cs" />
-     <Compile Include="Assets\Script\Stage.cs" />
-     <Compile Include="Assets\Script\Title.cs" />
-     <Compile Include="Assets\Script\TreasureGenerator.cs" />
-     <None Include="Assets\StageData\map_Stage1.txt" />
-     <None Include="Assets\StageData\map_Stage3.txt" />
-     <None Include="Assets\StageData\map_Stage5.txt" />
-     <None Include="Assets\StageData\map_Stage2.txt" />
-     <None Include="Assets\StageData\map_Stage4.txt" />
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Script\AudioChannels.cs" />
+    <Compile Include="Assets\Script\CombineChildren_Custom.cs" />
+    <Compile Include="Assets\Script\FollowCamera.cs" />
+    <Compile Include="Assets\Script\GameControl.cs" />
+    <Compile Include="Assets\Script\GlobalParam.cs" />
+    <Compile Include="Assets\Script\GridMove.cs" />
+    <Compile Include="Assets\Script\Hud.cs" />
+    <Compile Include="Assets\Script\MeshCombineUtility.cs" />
+    <Compile Include="Assets\Script\PlayerAnimator.cs" />
+    <Compile Include="Assets\Script\PlayerController.cs" />
+    <Compile Include="Assets\Script\Stage.cs" />
+    <Compile Include="Assets\Script\Title.cs" />
+    <Compile Include="Assets\Script\TreasureGenerator.cs" />
+    <Compile Include="Assets\Script\Weapon.cs" />
+    <None Include="Assets\StageData\map_Stage1.txt" />
+    <None Include="Assets\StageData\map_Stage3.txt" />
+    <None Include="Assets\StageData\map_Stage5.txt" />
+    <None Include="Assets\StageData\map_Stage2.txt" />
+    <None Include="Assets\StageData\map_Stage4.txt" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Compile Include="Assets\Script\Score.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -75,5 +79,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
